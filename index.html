@@ -1,18 +1,888 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style> 
-  .mainframe{
-    align-items: center;
-    justify-content: space-around;
+<style>
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #009efa; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #00a2ffee; 
+}
+body {
+font-family: 'Montserrat', Helvetica, sans-serif;
+margin:0;
+overflow-x: hidden;
+background-repeat:no-repeat;
+background-position: center;
+background-size: cover;
+}
+
+ul {
+  display:inline-block;
+  justify-content: space-evenly;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color:white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 10px 5px 5px black;
+  z-index: 100;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  margin-right: 0 ;
+  display:block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+li a:hover:not(.active) {
+  background-color: rgba(182, 179, 179, 0.967);
+}
+
+.active {
+  background-color: #009efa;
+  color: azure;
+}
+li button{
+    background-color:#00a2ffee;
+    color: azure;
+    margin-top: 7px;
+    margin-left: 27px;
+    padding-top: 7px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    border: none;
+    border-radius: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+li button:hover {
+    background-color:#02005d;
+} 
+li h1{
+    color:#02005d;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: 3px;
+    padding-top: 0px;
+    padding-left: 350px;
+    padding-right: 350px;
+    padding-bottom: 0px;
+    margin-bottom: 0;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+.dropdown{
+    margin-top:5px;
+    display:none;
+}
+.mainframe img{
+  width:100%;
+  margin-top:45px;
+  display: block;
+}
+.event-details {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.event-date,
+.event-time,
+.event-contact,
+.event-description {
+  font-weight: bold;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: rgba(3, 184, 244, 0.474);  
+  backdrop-filter: blur(5px);
+  box-shadow: 2px 2px 2px 2px#FFFFFF;
+  padding: 40px 40px 40px 40px;
+  margin-top: 50px;
+  
+}
+
+.column {
+  flex-basis: 48%;
+  margin-bottom: 20px;
+}
+.event_image{
+    width:400px;
   }
+.timeline{
+  position:relative;
+  max-width:1200px;
+  margin:100px auto;
+}
+.cbox{
+  padding:10px 50px;
+  position:relative;
+  width:35%;
+  background-color: rgba(3, 184, 244, 0.759); 
+}
+.text-box{
+  padding:10px 15px ;
+  background:#fff;
+  position:relative;
+  justify-content: space-around;
+  border-radius:6px;
+  color: #000;
+  font-size: 15px;
+  box-shadow: 2px 2px 2px 2px#FFFFFF;
+}
+.lcbox{
+  left:0;
+  padding:10px 50px;
+  position:relative;
+  width:42%;
+}
+.rcbox{
+  left:50%;
+  padding:10px 50px;
+  position:relative;
+  width:42%;
+}
+.lcbox_img
+{
+  position:absolute;
+  right:-20px;
+  top:32px;
+  z-index:10;
+}
+.rcbox_img
+{
+  position:absolute;
+  left:-20px;
+  top:32px;
+  z-index:10;
+}
+.timeline::after{
+  content:'';
+  position:absolute;
+  width:6px;
+  height:100%;
+  background:#009efa;
+  top:0;
+left:53%;
+margin-left:-3%;
+z-index:-1;
+animation: moveline 6s linear forwards;
+}
+@keyframes moveline{
+  0%{
+    height: 0%;
+  }
+  100%
+  {
+    height:100%;
+  }
+}
+.rcbox h3, 
+.lcbox h3 {
+  font-weight:800;
+}
+.left-container-arrow{
+  height:0;
+  width:0;
+  position:absolute;
+  top:28px;
+  z-index:-1;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 15px solid #009efa;
+  right:-15px;
+}
+.right-container-arrow{
+  height:0;
+  width:0;
+  position:absolute;
+  top:28px;
+  z-index:-1;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid #009efa;
+  left:-15px;
+}
+.about{
+  background-color: #0075b8ee;
+   padding: 10px; 
+  color:#fff;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;margin:0;
+  overflow-x: hidden;
+}
+.about2{
+  padding-left:35%;
+  text-align: left;
+  color:#fff;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;margin:0;
+  overflow-x: hidden;
+}
+@media only screen and (max-width:600px){
+  *{
+    overflow-x: hidden;
+  }
+  body{
+    overflow: hidden;
+    background-color: #02005d;
+  }
+  .container{
+    background-color:rgba(3, 184, 244, 0.474);  
+  backdrop-filter: blur(5px);
+  }
+  .row {
+    padding-left: 10px;
+    flex-direction: column        ;
+    align-items: center;
+    box-shadow: 0px 0px 0px 0px#FFFFFF;
+    background-color: rgba(255, 255, 255, 0);  
+    backdrop-filter: blur(5px);
+  }
+  
+  .column {
+    flex-basis: 100%;
+    
+  }
+  .event-details {
+    padding: 10px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .event_image{
+    width:200px;
+    position: relative;
+    margin-top:0px;
+    
+    padding:0;  
+
+  }
+  .mainframe img{
+  width:100%;
+  margin-top:35px;
+  display: block;
+}
+button{
+    margin-top: 2px;
+    margin-bottom: 4px;
+    
+}
+ul
+{ 
+  width: 700px;
+  position: fixed;
+}
+  li img{
+    display: block;
+    width:35px;
+    padding-top: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+  }
+  li a{    
+    display:none;
+  }
+  li h1{
+    color:#02005d;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 3px;
+    padding-top: 0px;
+    padding-left: 70px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+li button{
+    background-color:#00a2ffee;
+    color: azure;
+    margin-top: 2px;
+    position: fixed;
+    margin-left: 7px;
+    padding-top: 7px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    border: none;
+    border-radius: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    z-index: 100;
+}
+.dropdown {
+    top: 2px;
+    left:2px;
+    z-index: 100;
+  display: inline-block;
+  position: fixed;
+}
+.dropdown button img{
+    margin-top: 0px;
+    width: 35px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  width: 150%;
+  overflow: hidden;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+  background-color: #004c58;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content a {
+  display: block;
+  color: white;
+  padding: 5px;
+  text-decoration: none;
+}
+.dropdown-content a:hover {
+  color: #FFFFFF;
+  background-color: #00A4BD;
+}
+.timeline{
+ margin:50px auto;
+}
+.timeline::after{
+  left:31px
+}
+.rcbox,.lcbox{
+  width:100%;
+  padding-left: 80px;
+  padding-right: 50px;
+}
+.text-box{
+  width:60%;
+  font-size:13px;
+  margin-top: 10px;
+  margin-bottom:10px;
+}
+.rcbox{
+  left:0;
+}
+.rcbox_img,.lcbox_img{
+  left:10px;
+}
+.right-container-arrow,.left-container-arrow{
+  height:0;
+  width:0;
+  position:absolute;
+  top:20px;
+  z-index:-1;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid #009efa;
+  left:-15px;
+  border-left:0;
+  right:0;
+}
+.about{
+  font-size: 10px;
+}
+.about2{
+  padding-left:5%;
+  
+}
+}
 </style>
 <title>iACT 2023</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="background:rgb(2, 2, 56)">
-  <div class="mainframe">
-    <img src="images/backdrop.png" style="width:100%;">
+<ul>
+  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="#events">Events</a></li>
+  <li><a href="#schedule">Schedule</a></li>
+  <li><a href="#about">About</a></li>
+  <li><h1>iACT 2023</h1></li>
+  <li><button id="myButton">REGISTER NOW</button></li>
+</ul>
+<div class="dropdown">
+    <button><img src="images/menu.png" class="menu-icon"style="background-color:#00a2ffee;"/></button>
+    <div class="dropdown-content">
+    <a href="#events">Events</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#about">About</a>
     </div>
+  </div>
+   <div class="mainframe">
+    <img src="images/maindesk.png">
+    </div>
+<div style="padding:20px;margin-top:0px;height:fit-content;color:azure;align-items:center;">
+  <h1 style="padding-left: 80px;"><a id="events"style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;text-align: center;">EVENTS </h1>
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <img class="event_image"src="images/panacea_left.png">
+        </div>
+        <div class="column"><a id="panbegin"></a>
+          <div class="event-details">
+            <h1>Panacea</h1>
+            <h4>A Solution towards Engineering Problems</h4>
+            <p>By</p>
+            <span class="event-contact"><img src="images/person.png">Mr. Girish Ayya</p>
+            <span class="event-contact">Avadhoot Automations</p>
+            <p><img src="images/calender.png" style="width:15px;"><span class="event-date"> 31st March 2023</span></p>
+            <p><img src="images/clock.png" style="width:15px;"><span class="event-time"> 10:30 am -5:00 pm</span></p>
+            <p>Coordinator Contact Info: <br><span class="event-contact"><img src="images/person.png"> Rishabh Karunakar Rao <img src="images/phone.png" style="width:15px;"> +91 90794 68525</span><br>
+              
+          </div>
+        </div>
+        <p>Description: <span class="event-description">A workshop that develops BRULE (an acronym for Break the RULE) thinking and creative aptitude towards providing solutions for a plethora of industrial problems. The participants will develop skills for understanding problems and contextual learning. This workshop will enable the students to change their mindset. The sessions will take you through the following steps in arriving at distinct solutions
+          <br>-> How to understand the problem?
+          <br>-> Gather information
+          <br>-> Analyze and Interpret
+          <br>-> Form an explanatory hypothesis.
+      </span></p>
+      <a href="#pansch" style="font-size:medium;color: #eee;text-align: center;">View in schedule</a>
+      </div>
+      
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <img class="event_image"src="images/mazerunner.png">
+        </div>
+        <div class="column"><a id="mzrstart"></a>
+          <div class="event-details">
+            <h1>MAZE RUNNER</h1>
+            <h4>Build to aMAZE </h4>
+            <p>By</p>
+            <span class="event-contact"><img src="images/person.png">Mr. Anand Iyyer</p>
+            <span class="event-contact">ISA-B</p>
+            <p><img src="images/calender.png" style="width:15px;"><span class="event-date"> 31st March 3pm to</span></p>
+            <p><span class="event-time">1st April 3:00 pm</span></p>
+            <p>Coordinator Contact Info: <br><span class="event-contact"><img src="images/person.png"> V Pavan <img src="images/phone.png" style="width:15px;"> +91 79757 24237</span><br>
+              <span class="event-contact"><img src="images/person.png"> Syed Zain <img src="images/phone.png" style="width:15px;"> +91 70224 42783</span></p>
+              <span class="event-contact"><img src="images/person.png"> Achyutha G <img src="images/phone.png" style="width:15px;"> +91 87672 48624</span></p>
+            </div>
+        </div>
+        <p>Description: <span class="event-description">Autonomous Vehicles are becoming smarter by the day. Take a dive into building your own Two wheel drive Autonomous Robot from scratch. 
+          Learn , Build and Compete to solve maze full of twists and turns. Amaze yourself with your ability to come up with path planning and sensor based decision making  algorithms with the clock ticking and your bot racing towards the end mapping its path along          
+      </span></p>
+      <a href="images/MZRrulebook.pdf" download="Maze_Runner_Rulebook" target="_blank" style="font-size:medium;color: #eee;text-align: center;">Download Rulebook</a>
+      <a href="#mzrbegin"  style="font-size:medium;color: #eee;text-align: center;">View in schedule</a>
+    </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <img class="event_image"src="images/cha.png">
+        </div>
+        <div class="column"><a  id="gptstart"></a>
+          <div class="event-details">
+            <h1>TUTORIAL ON CHATGPT</h1>
+            <h4>Search -> Solve -> Learn -> Repeat</h4>
+            <p>By</p>
+            <span class="event-contact"><img src="images/person.png">Muniraju Pulipalyam
+              ,CTO-in-Residence
+             
+              </p>
+            <span class="event-contact"> Microsoft Accelerator, Bangalore</p>
+            <p><img src="images/calender.png" style="width:15px;"><span class="event-date"> 1st April 2023</span></p>
+            <p><img src="images/clock.png" style="width:15px;"><span class="event-time"> 9:00 - 10:00 AM</span></p>
+            <p>Coordinator Contact Info: <br><span class="event-contact"><img src="images/person.png"> Skandha G. Patil <img src="images/phone.png" style="width:15px;"> +91 95125 99149</span><br>
+              <span class="event-contact"><img src="images/person.png"> Karthik <img src="images/phone.png" style="width:15px;"> +91 82771 72700</span></p>
+          </div>
+        </div>
+        <p>Description: <span class="event-description">ChatGPT is a state-of-the-art language model that can
+          assist in various applications, from generating text to
+          answering questions. This tutorial aims to provide
+          participants with a comprehensive introduction to
+          using ChatGPT. Participants will learn the basics of the
+          model, including its architecture, training data, and
+          capabilities. We will then guide participants through
+          hands-on exercises that will enable them to use
+          ChatGPT for various tasks, such as text generation,
+          summarization, and question answering.<br><br>
+          TOPICS TO BE COVERED IN THE TUTORIAL:<br>
+        -> Introduction to ChatGPT<br>
+        ->   Understanding the Architecture and Training Data<br>
+        ->   Hands-On Exercises for Text Generation,<br>
+        ->   Summarization, and Question Answering<br>
+        ->   Tips and Tricks for Optimizing ChatGPT<br>
+          Performance
+      </span></p>
+      <a href="#gptsch" style="font-size:medium;color: #eee;text-align: center;">View in schedule</a>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <img class="event_image"src="images/aiml.png">
+        </div>
+        <div class="column"><a id="aimlstart"></a>
+          <div class="event-details">
+            <h1>AI ML WORKSHOP and Skill Development by Honeywell</h1>
+            <h4>AI/ML in the real world</h4>
+            <p>By</p>
+            <span class="event-contact"><img src="images/person.png">Revealing Soon....</p>
+            <span class="event-contact"> Honeywell Automations</p>
+            <p><img src="images/calender.png" style="width:15px;"><span class="event-date"> 31st March 2023</span></p>
+            <p><img src="images/clock.png" style="width:15px;"><span class="event-time"> 10:30 am -5:00 pm</span></p>
+            <p>Coordinator Contact Info: <br><span class="event-contact"><img src="images/person.png"> Sudarshan Murthy <img src="images/phone.png" style="width:15px;"> +91 94493 53969</span><br>
+              <span class="event-contact"><img src="images/person.png"> Anusha V <img src="images/phone.png" style="width:15px;"> +91 90080 67182</span></p>
+              <span class="event-contact"><img src="images/person.png">Anagha N<img src="images/phone.png" style="width:15px;"> +91 98867 55833</span></p>
+             
+            </div>
+        </div>
+        <p>Description: <span class="event-description">Artificial Intelligence/Machine Learning is the
+          technology that empowers computers to learn and
+          make decisions like humans. It enables us to
+          automate tasks, optimize processes, and create new
+          opportunities for innovation. In this session
+          conducted by Honeywell, participants will learn the
+          basics of AI/ML, including its history, applications,
+          and challenges. We will discuss the various
+          components of AI/ML, such as algorithms, data, and
+          models, and provide real-world examples of their
+          use.<br><br>
+          Topics cover in this session:<br>
+          <br> -> Introduction to AI/ML
+          <br> -> Applications and Challenges of AI/ML
+          <br> -> Components of AI/ML: Algorithms, Data, and
+          <br> -> Models
+          <br> -> Real-World Examples of AI/ML
+      </span></p>
+      <a href="#aimlsch" style="font-size:medium;color: #eee;text-align: center;">View in schedule</a>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <img class="event_image"src="images/pandp.png">
+        </div>
+        <div class="column">
+          <div class="event-details"><a id="pandpstart"></a>
+            <h1>PAPER AND PROJECT PRESENTATION</h1>
+            <h4></h4>
+            <p>Jury</p>
+            <span class="event-contact"><img src="images/person.png">Revealing Soon....</p>
+            <span class="event-contact"></p>
+            <p><img src="images/calender.png" style="width:15px;"><span class="event-date"> 31st March 2023</span></p>
+            <p><img src="images/clock.png" style="width:15px;"><span class="event-time"> 10:30 am -5:00 pm</span></p>
+            <p>Coordinator Contact Info: <br><span class="event-contact"><img src="images/person.png">Mihir P <img src="images/phone.png" style="width:15px;"> +91  82966 89145</span><br>
+              <span class="event-contact"><img src="images/person.png"> Vishnu Sreenivasa <img src="images/phone.png" style="width:15px;"> +91 78926 78275</span></p>
+              <span class="event-contact"><img src="images/person.png"> Pranam J <img src="images/phone.png" style="width:15px;"> +91 87223 40206</span></p>
+            </div>
+        </div>
+      </span></p>
+      <a href="images/pandp.pdf" download="PandPDetails" target="_blank" style="font-size:medium;color: #eee;text-align: center;">Download Rulebook of submission</a>
+      <a href="#pandpsch" style="font-size:medium;color: #eee;text-align: center;">View in schedule</a>
+      </div>
+    </div>
+  <h1><a id="schedule" style="text-align: center;" >SCHEDULE</a></h1>
+  <h1 style="text-align: center;">Timeline of Events</h1>
+  <div class="timeline">
+    <h4 style="text-align:center;font-size: medium; background-color:#00a2ffee;border-radius: 10px; padding: 5px;text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">Day 1 | 31st March</h4>
+    <div class="lcbox">
+      <img src="images/iact_mini.png" width="55px" style="border-radius:5px;"class="lcbox_img">
+      <div class="text-box">
+        <h3>Inauguration</h3>
+        <h4>with ISAB members, BMSCE management, Faculty & Students of ISAB</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon </h4><h4><img src="images/clock.png" style="width:15px;"> 9:45 am to 10:45 am</h4>
+        <span class="left-container-arrow">
+      </div>
+    </div>
+    <div class="rcbox">
+      <img src="images/iact_mini.png" width="55px" style="border-radius:5px;"class="rcbox_img">
+      <div class="text-box">
+        <h3>Interactive Session on Innovation and Creativity</h3>
+        <h4>By xyz</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon  </h4><h4><img src="images/clock.png" style="width:15px;"> 11:00 am to 11:15 am</h4>
+        <span class="right-container-arrow">
+      </div>
+    </div>
+    <div class="lcbox">
+      <img src="images/iact_mini.png" width="55px" style="border-radius:5px;" class="lcbox_img">
+      <div class="text-box">
+        <h3>Creative Problem Solving Techniques</h3>
+        <h4>By xyz</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon  </h4><h4><img src="images/clock.png" style="width:15px;"> 11:15 am to 12:30 am</h4>
+        <span class="left-container-arrow">
+      </div>
+    </div>
+    <div class="rcbox">
+      <img src="images/iact_mini.png" width="55px" style="border-radius:5px;"class="rcbox_img">
+      <div class="text-box">
+        <h3>Hands on Session on CPS with quiz</h3>
+        <h4>By xyz</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon  </h4><h4><img src="images/clock.png" style="width:15px;"> 12:30 am to 1:00 am</h4>
+        <span class="right-container-arrow">
+      </div>
+    </div>
+    <div class="lcbox">
+      <img src="images/iact_mini.png" width="55px" style="border-radius:5px;"class="lcbox_img">
+      <div class="text-box">
+        <h3>FIEPER Introduction followed by BOT</h3>
+        <h4>By  Mr.Anand Iyer</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon </h4><h4><img src="images/clock.png" style="width:15px;"> 2:00 pm to 3:00 pm</h4>
+        <span class="left-container-arrow">
+      </div>
+    </div>
+    <div class="rcbox">
+      <img src="images/mazerunner.png" width="55px" style="border-radius:5px; background-color: #fff;"class="rcbox_img">
+      <div class="text-box" style="background-color: #009efa;">
+        <h3><a href="#mzrend" id="mzrbegin" style="color: #fff;">Maze Runner</a></h3>
+        <h4>24Hr Countdown Starts .....</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon  </h4><h4><img src="images/clock.png" style="width:15px;"> 3:15 onwards</h4>
+        <span class="right-container-arrow">
+      </div>
+    </div>
+    <div class="lcbox">
+      <img src="images/panacea_left.png" width="55px" style="border-radius:5px; background-color: #fff;" class="lcbox_img">
+      <div class="text-box">
+        <h3><a href="#panbegin" id="pansch">Panacea Ideathon: Introduction and Rules</a></h3>
+        <h4>By xyz</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon  </h4><h4><img src="images/clock.png" style="width:15px;"> 3.15 pm 
+          to 
+          4.00 pm</h4>
+        <span class="left-container-arrow">
+      </div>
+    </div>
+    <div class="rcbox">
+      <img src="images/panacea_left.png" width="55px" style="border-radius:5px; background-color: #fff;"class="rcbox_img">
+      <div class="text-box">
+        <h3>Panacea :Actual Problem Solving of IDEATHON and Evaluation</h3>
+        <h4>By xyz</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon  </h4><h4><img src="images/clock.png" style="width:15px;"> 4.00 pm 
+          to 
+          5.00 pm</h4>
+        <span class="right-container-arrow">
+      </div>
+    </div>
+    <div class="lcbox">
+      <img src="images/panacea_left.png" width="55px" style="border-radius:5px;background-color: #fff;" class="lcbox_img">
+      <div class="text-box">
+        <h3>Panancea: Industry Problem and Solutions + ITC Foods</h3>
+        <h4>By xyz</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon  </h4><h4><img src="images/clock.png" style="width:15px;">5:00pm
+          to
+          6.00 pm</h4>
+        <span class="left-container-arrow">
+      </div>
+    </div>
+    <div class="rcbox">
+      <img src="images/iact_mini.png" width="55px" style="border-radius:5px;"class="rcbox_img">
+      <div class="text-box">
+        <h3>Cultural Activity</h3>
+        <h4>By xyz</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon  </h4><h4><img src="images/clock.png" style="width:15px;"> 6.30 pm 
+          to 
+          7.00 pm</h4>
+        <span class="right-container-arrow">
+      </div>
+    </div>
+  </div>
+  <div class="timeline">
+    <h4 style="text-align:center;font-size: medium; background-color:#00a2ffee;border-radius: 10px;padding: 5px;text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">Day 2 | 1st April</h4>
+    <div class="lcbox">
+      <img src="images/cha.png" width="55px" style="border-radius:5px; background-color: #fff; "class="lcbox_img">
+      <div class="text-box">
+        <h3><a href="#gptstart" id="gptsch">Tutorial 
+          on 
+          CHATGPT</a></h3>
+        <h4>By xyz</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon </h4><h4><img src="images/clock.png" style="width:15px;"> 9.00 am 
+          to 
+          10.00 am</h4>
+        <span class="left-container-arrow"></span>
+      </div>
+    </div>
+    <div class="rcbox">
+      <img src="images/pandp.png" width="55px" style="border-radius:5px;background-color:#009efa;"class="rcbox_img">
+      <div class="text-box">
+        <h3><a href="#pandpstart" id="pandpsch">Poster and Project presentation Session (Setup)</a></h3>
+        <h4>By xyz</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon  </h4><h4><img src="images/clock.png" style="width:15px;">9.00 am 
+          to 
+          10.00 am</h4>
+        <span class="right-container-arrow">
+      </div>
+    </div>
+    <div class="lcbox">
+      <img src="images/aiml.png" width="55px" style="border-radius:5px; background-color: #fff;" class="lcbox_img">
+      <div class="text-box">
+        <h3><a href='#aimlstart' id="aimlsch">AI/ML and Skill Development by Honeywell </a></h3>
+        <h4>By xyz</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon  </h4><h4><img src="images/clock.png" style="width:15px;"> 10.15am 
+          to 
+          1.15 am</h4>
+        <span class="left-container-arrow">
+      </div>
+    </div>
+    <div class="rcbox">
+      <img src="images/pandp.png" width="55px" style="border-radius:5px;background-color:#009efa;"class="rcbox_img">
+      <div class="text-box">
+        <h3>Poster and Project presentation Session(Display)</h3>
+        <h4>By xyz</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon  </h4><h4><img src="images/clock.png" style="width:15px;"> 10.15am 
+          to 
+          1.15 am</h4>
+        <span class="right-container-arrow">
+      </div>
+    </div>
+    <div class="lcbox">
+      <img src="images/mazerunner.png" width="55px" style="border-radius:5px;  background-color: #fff;"class="lcbox_img">
+      <div class="text-box" style="background-color: #009efa;">
+        <h3><a href="#mzrstart" id="mzrend" style="color: #fff;">Maze Runner</a></h3>
+        <h4>24Hr Hack Ends</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon  </h4><h4><img src="images/clock.png" style="width:15px;"> at 3:15</h4>
+        <span class="left-container-arrow">
+      </div>
+    </div>
+    
+    
+    <div class="rcbox">
+      <img src="images/pandp.png" width="55px" style="border-radius:5px; background-color:#009efa;"class="rcbox_img">
+      <div class="text-box">
+        <h3>Poster and Project presentation Session (Presentation & Evaluation)</h3>
+        <h4>By  Mr.Anand Iyer</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon </h4><h4><img src="images/clock.png" style="width:15px;">2 .00 pm 
+          to
+          3.00pm </h4>
+        <span class="right-container-arrow">
+      </div>
+    </div>
+    
+    <div class="lcbox">
+      <img src="images/iact_mini.png" width="55px" style="border-radius:5px;" class="lcbox_img">
+      <div class="text-box">
+        <h3>Valedictory
+          ISA help for institute/student sections</h3>
+        <h4>By xyz</h4>
+        <h4><img src="images/loc.png" style="width:15px;"> Updating Soon  </h4><h4><img src="images/clock.png" style="width:15px;"> 3.15 pm 
+          to 
+          5.00 pm</h4>
+        <span class="left-container-arrow">
+      </div>
+    </div>
+  </div>
+  <h1 style="text-align: center;"><a id="about">ABOUT US</h1>
+  </div>
+    <div class="about">
+      <h3 style="text-align: center;">ABOUT iACT</h3>
+    <p style=" padding-left:10px;text-align: left;">iACT (ISA-B Automation & Control TechDay) is an annual event that is conducted by one of several student sections of ISA-B.Promoted for the first time in year 2014, by ISA-B for the benefit of student ISA members, ISA-B affiliated student sections partake in this annual event. BMSCE ISA Student section, hosted the first iACT event. This annual event facilitated by ISA-B in terms of content and oversight, is rich and diverse in content and provides a platform for engagement by students of automation and electrical sciences to showcase and learn from each other. The host educational institution together with the participating educational institutions stands to benefit by this annual iACT event sponsored by ISA-B.
+
+      The primary objective of conducting ISA-B - iACT annual event is to bring all ISA-B affiliated student section members and faculty to a common platform which provides, a healthy competitive environment for participating students and engineering faculty to showcase their talent and learning in the evolving field of automation, digital, instrument, mechatronics, and electrical sciences. Rich exchange of innovative ideas and learnings is moderated and facilitated by experienced industry professionals for students to benefit from.
+      
+      Another major objective of ISA-B - iACT annual event, is for faculty members of Engineering Institutions to learn from their peers and emulate innovative processes that enrich their student learning programs.</p> 
+      <br>
+      <br>
+      <h3 style="text-align: center;">About International Society of Automation (ISA)</h3>
+      <p style=" padding-left:10px;text-align: left;">The International Society of Automation (ISA) is a non-profit professional association founded in 1945 to create a better world through automation. ISA empowers the global automation community through standards and knowledge sharing, driving the advancement of individual careers and the overall profession. ISA develops widely used global standards; certifies professionals; provides education and training; publishes books and technical articles; hosts conferences and exhibits; and provides networking and career development programs for its members and customers around the world
+
+        ISA created the ISA Global Cybersecurity Alliance (isa.org/ISAGCA) to advance cybersecurity readiness and awareness in manufacturing and critical infrastructure facilities and processes. The Alliance brings end-user companies, automation and control systems providers, IT infrastructure providers, services providers, system integrators, and other cybersecurity stakeholder organizations together to proactively address growing threats
+        
+        ISA owns Automation.com, a leading online publisher of automation-related content. Through a wholly-owned subsidiary, ISA bridges the gap between standards and their implementation with the ISA Security Compliance Institute (isasecure.org) and the ISA Wireless Compliance Institute (isa100wci.org).
+        </p>
+    <br>
+      <br>
+      <h3 style="text-align: center;">About B.M.S College of Engineering</h3>
+      <p style=" padding-left:10px;text-align: left;">The B.M.S. College of Engineering (BMSCE) was founded by a great visionary and philanthropist Late Sri. B. M. Sreenivasaiah (BMS) in the year 1946. After demise of the founder, Sri. B. S. Narayan the illustrious son of the Founder took over the reins of the College. Under his able leadership, the college grew from strength to strength. BMSCE is the first engineering college established in the country (pre independ- ent India) by a private enterprise. The college is an aided in-stitution (by Government of Karnataka) and affiliated to Vis- vesvaraya Technological University (VTU). BMSCE offers 15 UG, 16 PG & 15 Research programmes. About Electronics & Instrumentation Engg. The Department of Instrumentation Technology started in the year 1991. Currently the program offers Under Graduate (UG) degree with an intake of 60. The Department Infrastructure fulfills the requirements of academics and learning skills on the latest technology in the industry. Dedicated faculty with Ph.D who are into Research and Development activities at Institution level
+      </p>
+      <br>
+      <br>
+      <h3 style="text-align: center;">About Department of Electronics & Instrumentation Engineering</h3>
+      <p style=" padding-left:10px;text-align: left;">The Department of Electronics and Instrumentation Engg. started in the year 1991. More than twenty five batches of Engineers have graduated from Department of Instrumentation Technology, B.M.S College of Engineering
+        Currently the program offers Under Graduate (UG) degree with an intake of 60. The Department Infrastructure fulfills the requirements of academics and learning skills on the latest technology in the industry. Dedicated faculty with Ph.D who are into Research and Development activities at Institution level, Qualified technical staff and enthusiastic and intelligent students are the strength of the department
+        A well designed curriculum takes the student through basics of Engineering, core domain and development of competencies by the effective usage of Modern Engineering Tools like: MATLAB, LabVIEW, Multisim, Xilinx, IAR Embedded workbench, Code-Composer-Studio, Simulation tools, PCB design labs, process control loops and PLCs applications. The department has strong industry collaborations in the field of Sensors, Automation Control, Embedded Systems, IoT solutions through Professional bodies as well as through faculty contacts. Their contribution is reflected through guidance in curriculum design, organization of industrial visits, conduction of expert lectures, organization of workshops, and joint research. One of the important developmental activity of the department in latest years is to draw together key stakeholders viz. Alumni, employers, Faculty, Industries, Professional bodies and students in a neutral venue, one that allows them to discuss issues and foster collaborative activities around issues in which they have a strong common interest for the growth of the department
+      </p>
+    </div>
+      <div class="about2" style="background-color: #02005d;">
+        <h3 style="color:rgb(0, 255, 153); font-size: large;">Chief Patrons</h3>
+      <p style=" font-size: medium;">Dr. B. S. Ragini Narayan, Donor Trustee 
+        Chair Person,B.M.S.E.T<br>
+        Dr. Dayanand Pai, Chairman, B.M.S.C.E.<br>
+        Mr. Aviram Sharma, Trustee , B.M.S.E.T<br>
+        Mr.Ravi Venkatesam, Trustee,B.M.S.E.T</p>
+    <h3 style="color:rgb(0, 255, 153); font-size: large;"> Patrons</h3>
+      <p style=" font-size: medium;">Dr. S.Muralidhara, Principal, B.M.S.C.E.<br>
+        Dr. Suresh R. Reddy, Vice Principal (Aca) ,B.M.S.C.E.<br>
+        Dr. Bheemsha,Vice Principal (Admin) B.M.S.C.E. <br></p>
+        <h3 style="color:rgb(0, 255, 153); font-size: large;">Organising Chair</h3>
+      <p style="font-size: medium;">Dr. Santosh R. Desai, Professor & Head, Dept. of EIE,B.M.S.C.E</p>
+      <h3 style="color:rgb(0, 255, 153); font-size: large;">Organising Committee</h3>
+      <p style="font-size: medium;">Mr. S. R. Venkatapathy, Trustee- ISAB Past President<br>
+        Dr. Sunil S. Shah, Special Assignment Chair-ISAB, Past President ISAB<br>
+        Mr. Renukaprasad Belgur, Entrepreneurship -ISAB Past President ISAB<br>
+        Mr. Ravi Balakrishnan, Secretary-ISAB<br>
+        Mr. Krishna Puliyur, Board Member-ISAB Past President ISAB<br>
+        Mr. Prasanna Inamdar, Students and Education, -ISAB<br>
+        Dr. Jayesh Bharve, Honours and Awards -ISAB Past President ISAB<br>
+        Mr. Girish Ayya, Treasurer-ISAB<br>
+        Dr. Veena N. Hegde, Professor, Dept. of EIE., B.M.S.C.E.  <br>
+        Dr. Preethi K. Mane, Assoc. Professor, Dept. of EIE., B.M.S.C.E. <br> 
+        Mr. Kumar D., Asst. Professor, Dept. of EIE., B.M.S.C.E. </p>
+        <h3 style="color:rgb(0, 255, 153); font-size: large;">Contact Details</h3>
+        <p style=" font-size: medium;">Dr. Veena N Hegde - 9886081532<br>
+          Mr. Kumar D - 9743114046<br>
+          Mihir P - 8296689145<br>
+          Bhavye Bhasin - 9148722891</p>
+    </div>
+  <script type="text/javascript">
+      document.getElementById("myButton").onclick = function () {
+          location.href = "regpage.html";
+      };
+  </script>
 </body>
 </html>
