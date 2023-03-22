@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #009efa; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #00a2ffee; 
+}
+body {
+margin:0;
+overflow-x: hidden;
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+display:flex;
+justify-content: center;
+align-items:center;
+flex-direction: column;
+width:100%;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+  display:inline-block;
+  justify-content: space-evenly;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color:white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 6%;
+  z-index: 99;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  margin-right: 0 ;
+  display:block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.backicon {
+  width:4%;
+  position:fixed;
+  top:0%;
+  left:2%;
+  z-index:100;}
+.container{
+  max-width: 100%;
+  margin: 0 29%;
+}
+button{
+    background-color:#00a2ffee;
+    color: azure;
+    margin-top: 7px;
+    margin-left: 27px;
+    padding-top: 7px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    border: none;
+    border-radius: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+button:hover {
+    background-color:#02005d;
+} 
+li h1{
+    color:#00a2ffee;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    left:35%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+.inputBox{
+  position:relative;
+  width:200px;
+}
+.inputBox input
+{
+  width:300px;
+  padding:10px;
+  background-color: rgba(240, 255, 255, 0);
+  border:1px solid rgba(255, 255, 255, 0.888);
+  border-radius: 5px;
+  outline: none;
+  color:rgb(255, 255, 255);
+  font-size:1em;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.inputBox span
+{
+  position: absolute;
+  left:10px;
+  top:25px;
+  padding:0px;
+  pointer-events:none;
+  font-size: 1em;
+  color: solid rgba(255, 255, 255, 0.888);
+  transition:0.5s;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.inputBox input:valid ~span,
+.inputBox input:focus ~span
+{
+  color:white;
+  transform: translateX(7px)translateY(-19px);
+  font-size: 0.85em;
+  padding: 0 10px;
+  background: #009efa;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+.checkBox{
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 17px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+ 
+}
+
+/* Hide the browser's default checkbox */
+.checkBox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkBox:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkBox input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkBox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkBox .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.image_icons{
+  width:4%;
+ }
+ .radioButton label{
+  position: relative;
+  left:5%;
+  top:5%;
+  font-size: medium;
+ }
+
+@media only screen and (max-width:700px){
+button{
+    margin-top:2px;
+    margin-left: 10px;
+    background-color: #009efa;
+}
+.backicon{
+  width: 15%;
+  padding: 0;
+  margin:0;
+}
+ul{
+  width: 100%;
+  position: fixed;
+  
+}
+  li img{
+    display: block;
+    width:35px;
+  }
+ .li h1{
+  position: fixed;
+  top: 10%;
+  left: 20px;
+  z-index: 99;
+ }
+ .container{
+  margin:0 0%;
+ }
+ .image_icons{
+  width:30px;
+ }
+ /* li h1{
+    color:#02005d;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 3px;
+    padding-top: 0px;
+    padding-left: 200px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+li button{
+    background-color:#00a2ffee;
+    color: azure;
+    margin-top: 7px;
+    margin-left: 7px;
+    padding-top: 7px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    border: none;
+    border-radius: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+.dropdown {
+    top: 0px;
+    right:15px;
+  display: inline-block;
+  position: fixed;
+}
+.dropdown button img{
+    margin-top: 2px;
+    width: 35px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  width: 150%;
+  overflow: hidden;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+  background-color: #009efa;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content a {
+  display: block;
+  color: white;
+  padding: 5px;
+  text-decoration: none;
+}
+.dropdown-content a:hover {
+  color: #FFFFFF;
+  background-color: #004c58;
+}*/
+
+}
+</style>
+<title>Register-iACT 2023</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script
+src="https://code.jquery.com/jquery-3.4.1.js"
+integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+crossorigin="anonymous"></script>
+<script>
+function SubForm (){
+  $.ajax({
+    url:"https://api.apispreadsheets.com/data/0JAWagouJ0Q9ZuFN/",
+    type:"post",
+    data:$("#myForm").serializeArray(),
+    success: function(){
+      if(optionA.checked){
+      alert("Registeration Sucessfull!\n You will recieve entry ticket by email \n after mannual verification of credentials\n Resubmit incase of inncorrect credentials");
+      location.reload();
+      }
+      else{
+        alert('Make Payment to confirm registrations\n https://docs.google.com/forms/d/1nj0edfwzrT7NV8CQ6IPGiFFJOp5v0jZZiLxacexpzKk/edit');
+        window.location.href="https://docs.google.com/forms/d/1nj0edfwzrT7NV8CQ6IPGiFFJOp5v0jZZiLxacexpzKk/edit"
+      }
+    },
+    error: function(){
+      if(optionA.checked){
+      alert("Registeration Sucessfull!\n You will recieve entry ticket by email \n after mannual verification of credentials\n Resubmit incase of inncorrect credentials");
+      location.reload();
+      }
+      else{
+        alert('Make Payment to confirm registrations \n https://docs.google.com/forms/d/1nj0edfwzrT7NV8CQ6IPGiFFJOp5v0jZZiLxacexpzKk/edit');
+        window.location.href="https://docs.google.com/forms/d/1nj0edfwzrT7NV8CQ6IPGiFFJOp5v0jZZiLxacexpzKk/edit"
+      }
+    }
+  });
+}
+</script>
+</head>
+<body background="images/bg.png">
+  
+<ul>
+    <li><a class="active" href="index.html"><img src="images/backarrow.png" class="backicon"></a></li>
+  <li><h1> Register - iACT </h1></li>
+  <!--<li><button onclick="location.href='regpage.html'">REGISTER NOW</button><li>-->
+</ul>
+<div style="padding:20px;margin-top:40px;height:fit-content; color: azure;">
+  <div class="container">
+    <form id="myForm"> 
+    <div class="inputBox">
+      <input type="text" required="required" name="Name">
+      <span>Name</span>
+    </div>
+    <div class="inputBox">
+      <input type="text" required="required" name="College">
+      <span>College</span>
+    </div>
+    <div class="inputBox">
+      <input type="text" required="required" name="Place">
+      <span>Place</span>
+    </div>
+  <div class="inputBox">
+    <input type="text" required="required"  name="email">
+    <span>email</span>
+  </div>
+  <div class="inputBox">
+    <input type="text" required="required" name="usn">
+    <span style="font-size: 0.8em;width:277px;">University Serial Number/Roll no</span>
+  </div>
+  <div class="inputBox">
+    <input type="text" required="required" name="mobno">
+    <span>Mobile Number</span>
+  </div>
+  <br><br>
+  <label class="checkBox">SELECT EVENTS:<label><br><br>
+     <label class="checkBox"><h2 style="padding: 0%;">iACT 2023 (Talks and Interactive Sessions)</h2>
+      <img src="images/calender.png" class="image_icons">31st March - 1st April<br>
+      All Registrants should attend Talks and Interactive Sessions organised by ISA-B during the course of iACT 2023<br>
+      <img src="images/person.png" class="image_icons"> Individual Event 
+      <input type="checkbox" checked="checked">
+      <span class="checkmark"></span>
+    </label>
+    <label class="checkBox"><h2 style="padding: 0%;">AI/ML WORKSHOP</h2>
+      <img src="images/calender.png" class="image_icons">1st April<br>
+      <img src="images/clock.png" class="image_icons">10:15 am - 1:15 pm<br>
+      <img src="images/person.png" class="image_icons"> Individual Event 
+      <input type="checkbox" name="Aiml" value="yes">
+      <span class="checkmark"></span>
+    </label>
+  
+    <label class="checkBox"><h2 style="padding: 0%;">Panacea</h2>
+      <img src="images/calender.png" class="image_icons">31st March<br>
+      <img src="images/clock.png" class="image_icons">11:00am - 1:15pm<br>
+      <img src="images/person.png" class="image_icons"> Individual Event
+      <input type="checkbox" name="Panacea" value="yes">
+      <span class="checkmark"></span>
+    </label>
+    <label class="checkBox"><h2 style="padding: 0%;">Tutorial On CHATGPT</h2>
+      <img src="images/calender.png" class="image_icons">1st April<br>
+      <img src="images/clock.png" class="image_icons">9:00 am - 10:00am<br>
+      <img src="images/person.png" class="image_icons"> Individual Event
+      <input type="checkbox"name="Chatgpt" value="yes">
+      <span class="checkmark"></span>
+    </label>
+  </label></label>
+  <h2>Team Event (Choose 1 only)</h2>
+  <div class="radioButton" style="padding: 20px 20px 20px 20px;">
+    <input type="radio" name="team_event" value="6" onclick="toggle1()">
+    <label for="6" style="padding: 20px 20px 20px 20px;"><h2 style="padding: 0%;">None</label><br>
+    <input type="radio" id="maze_runner" name="team_event" value="mazerunner" onclick="toggle1()">
+    <label for="3"style="padding: 20px 20px 20px 20px;"><h2 style="padding: 0%;">Maze Runner</h2>
+      <img src="images/calender.png" class="image_icons">31st March 2:00 pm - 1st April 3:00 pm<br>
+      <img src="images/clock.png" class="image_icons">24Hr Hack<br>
+      <img src="images/team.png" class="image_icons" style="filter:invert(1);"> Team Event (MAX 4 Members)
+      <br><br><br>
+    <input type="radio" id="panp_pres" name="team_event" value="projectandpaper" onclick="toggle1()">
+    <label for="4" style="padding: 20px 20px 20px 20px;"><h2 style="padding: 0%;">Poster & Project Presentation</h2>
+      <img src="images/calender.png" class="image_icons">1st April<br>
+      <img src="images/clock.png" class="image_icons">9:00 am - 1:15 pm<br>
+      <img src="images/team.png" class="image_icons" style="filter:invert(1);"> Team Event (MAX 4 Members)
+      </label><br>
+  </div>
+  <br>
+  <br>
+  <h5 id="text1" style="color:#eee;margin:0;padding: 0;">You have chosen to join a team event<br>You can join a team created by a team Member or create a team<br> and share the team name for others to join</h5>
+
+  <div class="inputBox" id="team_name">
+    <input type="text" name="team_name">
+    <span style="font-size: 0.8em;width:100%;">Team Name</span>
+  </div>
+  <br>
+  <br>
+  <br>
+  <a href="images/info.pdf" download="iACT_2023" target="_blank" style="text-decoration:none;font-size:small;color: #eee;"><img src="images/info.png" style="width:15px;">Click Here for Event Details and Schedule</a></h2>
+  <div class="radioButton" style="padding: 20px 20px 20px 20px;">
+    <label>Which category do you belong to?</label><br>
+    <input type="radio" id="isa_member_yes" name="membershipStatus" value="yes" onclick="toogle()">
+    <label for="yes"style="padding: 20px 20px 20px 20px;">ISA member</label><br>
+    <input type="radio" id="isa_member_no" name="membershipStatus" value="no" onclick="toogle()">
+    <label for="no" style="padding: 20px 20px 20px 20px;">Non ISA member </label><br>
+  </div>
+  <div class="inputBox"id="isa_member_id">
+    <input type="text" name="membershipid">
+    <span style="font-size: 0.8em;width:282px;">ISA Membership ID</span>
+  </div>
+  <div class="inputBox" id="faculty_coordinator">
+    <input type="text"name="faculty_coordinator" >
+    <span style="font-size: 0.8em;width:170px;">Faculty Advisor Name</span>
+  </div>
+  <div class="inputBox" id="faculty_coordinator_contact">
+    <input type="text" name="faculty_coordinator_contact">
+    <span style="font-size: 0.8em;width:282px;">Contact number of Faculty Advisor</span>
+  </div>
+
+  <!--
+  <label class="checkBox"><h2 style="padding: 0%;"><h2 style="padding: 0%;">Maze Runner</h2>
+    <img src="images/calender.png" class="image_icons">31st March 2:00 pm - 1st April 3:00 pm<br>
+    <img src="images/clock.png" class="image_icons">24Hr Hack<br>
+    <img src="images/team.png" class="image_icons" style="filter:invert(1);"> Team Event (MAX 4 Members)
+    <input type="radio" id="maze_runner"  onclick="toogle1()">
+    <span class="checkmark"></span>
+    </label>
+  <label class="checkBox">
+    <h2 style="padding: 0%;">Poster &Project Presentation</h2>
+    <img src="images/calender.png" class="image_icons">1st April<br>
+    <img src="images/clock.png" class="image_icons">9:00 am - 1:15 pm<br>
+    <img src="images/team.png" class="image_icons" style="filter:invert(1);"> Team Event (MAX 4 Members)
+    <input type="radio" id="panp_pres"onclick="toogle1()">
+    <span class="checkmark"></span>
+  </label>-->
+  <br>
+  <br>
+<p>Please wait for 10seconds after clicking submit</p>
+</form>
+<button  onclick='SubForm()'>Register</button>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<script type="text/javascript">
+var optionA = document.getElementById("isa_member_yes");  // JN01_01a is the HTML ID of the selection option "yes" 
+var optionB = document.getElementById("isa_member_no");  
+var question1 = document.getElementById("faculty_coordinator");  //   HTML ID of the text input
+var question2 = document.getElementById("faculty_coordinator_contact");
+var question3 = document.getElementById("isa_member_id");
+var optionEA = document.getElementById("maze_runner");  // JN01_01a is the HTML ID of the selection option "yes" 
+var optionEB = document.getElementById("panp_pres");
+var t1 = document.getElementById("text1");
+var q1 = document.getElementById("team_name");
+function toogle() {
+  // the two pipes (||) are a logicial "or"
+  // the condition checks: is option A selected or is B selected?
+  if (optionA.checked) {
+    // if "yes" or "maybe" is selected, then the question is shown
+    // no input ("") uses the default setting (display as usual)
+    question1.style.display = "";
+    question2.style.display = "";
+    question3.style.display = "";
+  } else {
+    // question is hidden if the "none" option is selected
+    question1.style.display = "none";
+    question2.style.display = "none";
+    question3.style.display = "none";
+  }
+}
+function toggle1() {
+  if(optionEA.checked||optionEB.checked){
+    t1.style.display = "";
+    q1.style.display = "";
+  }
+  else{
+    t1.style.display = "none";
+    q1.style.display = "none";
+  }
+}
+// The function should always be executed, if one of the three options is clicked on 
+//SoSciTools.attachEvent(optionA, "click", toogle);
+//SoSciTools.attachEvent(optionB, "click", toogle);
+ 
+// and the function should also be executed, so that the display at the beginning is correct
+// (e.g. hide the text input at the beginning)
+toggle1();
+toogle();
+  </script>
+</body>
+</html>
+
+
