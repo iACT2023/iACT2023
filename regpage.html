@@ -377,16 +377,24 @@ function SubForm (){
       <input type="text" required="required" id="usn" name="usn" onclick="check_fill(tb4)">
       <span style="font-size: 0.8em;width:277px;">University Serial Number/Roll no</span>
     </div>
-
-
     <div class="inputBox">
       <input type="text" required="required" name="Place" onclick="check_fill(tb5)">
       <span>Place</span>
     </div>
-  
-  
+    <h2 style="padding: 0%;">Gender
+    <br>
+    <input type="radio" name="Gender" value="male">
+    <label for="male"style="padding: 20px 20px 20px 20px;">Male</label><br>
+    <input type="radio" name="Gender" value="female">
+    <label for="female" style="padding: 20px 20px 20px 20px;">Female</label><br></h2>
+    <p>Limited Shared Accomodation will be provided to Registrants placed outside based on priority basis</p>
+    <h2>Request Accomation<br><input type="radio" name="Accomodation" value="yes">
+    <label for="yes" style="padding: 20px 20px 20px 20px;">Yes</label><br>
+    <input type="radio" name="Accomodation" value="no">
+    <label for="no" style="padding: 20px 20px 20px 20px;">No</label><br>
+  </h2>
   <br><br>
-  <label class="checkBox">SELECT EVENTS:<label><br><br>
+  <label class="checkBox"><h2>SELECT EVENTS:</h2><label><br><br>
      <label class="checkBox"><h2 style="padding: 0%;">iACT 2023 (Talks and Interactive Sessions)</h2>
       <img src="images/calender.png" class="image_icons">31st March - 1st April<br>
       All Registrants should attend Talks and Interactive Sessions organised by ISA-B during the course of iACT 2023<br>
@@ -442,6 +450,10 @@ function SubForm (){
     <input type="text" name="team_name">
     <span style="font-size: 0.8em;width:100%;">Team Name</span>
   </div>
+  <div class="inputBox" id="team_size">
+    <input type="text" name="team_size">
+    <span style="font-size: 0.8em;width:100%;">No of Team Members(Max 4)</span>
+  </div>
   <br>
   <br>
   <br>
@@ -458,7 +470,7 @@ function SubForm (){
     <span style="font-size: 0.8em;width:282px;">ISA Membership ID</span>
   </div>
   <div class="inputBox" id="faculty_coordinator">
-    <input type="text"name="faculty_coordinator" >
+    <input type="text"name="faculty_coordinator">
     <span style="font-size: 0.8em;width:170px;">Faculty Advisor Name</span>
   </div>
   <div class="inputBox" id="faculty_coordinator_contact">
@@ -509,6 +521,7 @@ var optionEA = document.getElementById("maze_runner");  // JN01_01a is the HTML 
 var optionEB = document.getElementById("panp_pres");
 var t1 = document.getElementById("text1");
 var q1 = document.getElementById("team_name");
+var q2 = document.getElementById("team_size");
 var tb1= document.getElementById("Name");
 var tb2= document.getElementById("College");
 var tb3= document.getElementById("mobno");
@@ -543,10 +556,12 @@ function toggle1() {
   if(optionEA.checked||optionEB.checked){
     t1.style.display = "";
     q1.style.display = "";
+    q2.style.display = "";
   }
   else{
     t1.style.display = "none";
     q1.style.display = "none";
+    q2.style.display = "none";
   }
 }
 // The function should always be executed, if one of the three options is clicked on 
@@ -561,5 +576,3 @@ toogle();
   </script>
 </body>
 </html>
-
-
