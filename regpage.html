@@ -330,6 +330,9 @@ function SubForm (){
     url:"https://api.apispreadsheets.com/data/0JAWagouJ0Q9ZuFN/",
     type:"post",
     data:$("#myForm").serializeArray(),
+    error: function(){
+      alert('Error Submitting :(');
+    },
     success: function(){
       if(optionA.checked){
       alert("Registeration Sucessfull!\n You will recieve entry ticket by email \n after mannual verification of credentials\n Resubmit incase of inncorrect credentials");
@@ -337,17 +340,7 @@ function SubForm (){
       }
       else{
         alert('Make Payment to confirm registrations\n https://docs.google.com/forms/d/1nj0edfwzrT7NV8CQ6IPGiFFJOp5v0jZZiLxacexpzKk/edit');
-        window.location.href="https://docs.google.com/forms/d/1nj0edfwzrT7NV8CQ6IPGiFFJOp5v0jZZiLxacexpzKk/edit"
-      }
-    },
-    error: function(){
-      if(optionA.checked){
-      alert("Registeration Sucessfull!\n You will recieve entry ticket by email \n after mannual verification of credentials\n Resubmit incase of inncorrect credentials");
-      location.reload();
-      }
-      else{
-        alert('Make Payment to confirm registrations \n https://docs.google.com/forms/d/1nj0edfwzrT7NV8CQ6IPGiFFJOp5v0jZZiLxacexpzKk/edit');
-        window.location.href="https://docs.google.com/forms/d/1nj0edfwzrT7NV8CQ6IPGiFFJOp5v0jZZiLxacexpzKk/edit"
+        window.location.href="https://docs.google.com/forms/d/1nj0edfwzrT7NV8CQ6IPGiFFJOp5v0jZZiLxacexpzKk/edit";
       }
     }
   });
@@ -365,29 +358,33 @@ function SubForm (){
   <div class="container">
     <form id="myForm"> 
     <div class="inputBox">
-      <input type="text" required="required" name="Name">
+      <input type="text" name="Name" id="Name" required="required">
       <span>Name</span>
     </div>
     <div class="inputBox">
-      <input type="text" required="required" name="College">
+      <input type="text" required="required" id="College" name="College" onclick="check_fill(tb1)">
       <span>College</span>
     </div>
     <div class="inputBox">
-      <input type="text" required="required" name="Place">
+      <input type="text" required="required" id="mobno" name="mobno" onclick="check_fill(tb2)">
+      <span>Mobile Number</span>
+    </div>
+    <div class="inputBox">
+      <input type="text" required="required" id="email" name="email" onclick="check_fill(tb3)">
+      <span>email</span>
+    </div>
+    <div class="inputBox">
+      <input type="text" required="required" id="usn" name="usn" onclick="check_fill(tb4)">
+      <span style="font-size: 0.8em;width:277px;">University Serial Number/Roll no</span>
+    </div>
+
+
+    <div class="inputBox">
+      <input type="text" required="required" name="Place" onclick="check_fill(tb5)">
       <span>Place</span>
     </div>
-  <div class="inputBox">
-    <input type="text" required="required"  name="email">
-    <span>email</span>
-  </div>
-  <div class="inputBox">
-    <input type="text" required="required" name="usn">
-    <span style="font-size: 0.8em;width:277px;">University Serial Number/Roll no</span>
-  </div>
-  <div class="inputBox">
-    <input type="text" required="required" name="mobno">
-    <span>Mobile Number</span>
-  </div>
+  
+  
   <br><br>
   <label class="checkBox">SELECT EVENTS:<label><br><br>
      <label class="checkBox"><h2 style="padding: 0%;">iACT 2023 (Talks and Interactive Sessions)</h2>
@@ -485,6 +482,10 @@ function SubForm (){
     <input type="radio" id="panp_pres"onclick="toogle1()">
     <span class="checkmark"></span>
   </label>-->
+ 
+
+  
+
   <br>
   <br>
 <p>Please wait for 10seconds after clicking submit</p>
@@ -498,6 +499,7 @@ function SubForm (){
 
 </div>
 <script type="text/javascript">
+
 var optionA = document.getElementById("isa_member_yes");  // JN01_01a is the HTML ID of the selection option "yes" 
 var optionB = document.getElementById("isa_member_no");  
 var question1 = document.getElementById("faculty_coordinator");  //   HTML ID of the text input
@@ -507,6 +509,20 @@ var optionEA = document.getElementById("maze_runner");  // JN01_01a is the HTML 
 var optionEB = document.getElementById("panp_pres");
 var t1 = document.getElementById("text1");
 var q1 = document.getElementById("team_name");
+var tb1= document.getElementById("Name");
+var tb2= document.getElementById("College");
+var tb3= document.getElementById("mobno");
+var tb4= document.getElementById("email");
+var tb5= document.getElementById("usn");
+function check_fill(inputtx) 
+   {
+     if (inputtx.value.length == 0)
+      { 
+         alert("One of the necessary field is not filled \n Please Check");  	
+         return false; 
+      }  	
+      return true; 
+    } 
 function toogle() {
   // the two pipes (||) are a logicial "or"
   // the condition checks: is option A selected or is B selected?
@@ -539,6 +555,7 @@ function toggle1() {
  
 // and the function should also be executed, so that the display at the beginning is correct
 // (e.g. hide the text input at the beginning)
+check_fill();
 toggle1();
 toogle();
   </script>
