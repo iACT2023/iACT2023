@@ -428,15 +428,15 @@ function SubForm (){
   <h2>Team Event (Choose 1 only)</h2>
   <div class="radioButton" style="padding: 20px 20px 20px 20px;">
     <input type="radio" name="team_event" value="6" onclick="toggle1()">
-    <label for="6" style="padding: 20px 20px 20px 20px;"><h2 style="padding: 0%;">None</label><br>
+    <label for="6" style="padding: 20px 20px 20px 20px;"><h2 style="padding: 0%;">None</label><br><br>
     <input type="radio" id="maze_runner" name="team_event" value="mazerunner" onclick="toggle1()">
-    <label for="3"style="padding: 20px 20px 20px 20px;"><h2 style="padding: 0%;">Maze Runner</h2>
+    <label for="mazerunner"style="padding: 20px 20px 20px 20px;"><h2 style="padding: 0%;">Maze Runner</h2>
       <img src="images/calender.png" class="image_icons">31st March 2:00 pm - 1st April 3:00 pm<br>
       <img src="images/clock.png" class="image_icons">24Hr Hack<br>
       <img src="images/team.png" class="image_icons" style="filter:invert(1);"> Team Event (MAX 4 Members)
       <br><br><br>
     <input type="radio" id="panp_pres" name="team_event" value="projectandpaper" onclick="toggle1()">
-    <label for="4" style="padding: 20px 20px 20px 20px;"><h2 style="padding: 0%;">Poster & Project Presentation</h2>
+    <label for="projectandpaper" style="padding: 20px 20px 20px 20px;"><h2 style="padding: 0%;">Poster & Project Presentation</h2>
       <img src="images/calender.png" class="image_icons">1st April<br>
       <img src="images/clock.png" class="image_icons">9:00 am - 1:15 pm<br>
       <img src="images/team.png" class="image_icons" style="filter:invert(1);"> Team Event (MAX 4 Members)
@@ -502,7 +502,7 @@ function SubForm (){
   <br>
 <p>Please wait for 10seconds after clicking submit</p>
 </form>
-<button  onclick='SubForm()'>Register</button>
+<button  onclick='register()'>Register</button>
 
 </div>
 </div>
@@ -527,11 +527,17 @@ var tb2= document.getElementById("College");
 var tb3= document.getElementById("mobno");
 var tb4= document.getElementById("email");
 var tb5= document.getElementById("usn");
+function register(){
+  if(check_fill(tb1)&&check_fill(tb2)&&check_fill(tb3)&&check_fill(tb4)&&check_fill(tb5)){
+     SubForm();
+  }
+  else{alert("One of the necessary field is not filled \n Please Fill all required field to submit");}
+}
+
 function check_fill(inputtx) 
    {
      if (inputtx.value.length == 0)
-      { 
-         alert("One of the necessary field is not filled \n Please Check");  	
+      {   	
          return false; 
       }  	
       return true; 
@@ -569,10 +575,11 @@ function toggle1() {
 //SoSciTools.attachEvent(optionB, "click", toogle);
  
 // and the function should also be executed, so that the display at the beginning is correct
-// (e.g. hide the text input at the beginning)
-check_fill();
+// (e.g. hide the text input at the beginning
 toggle1();
 toogle();
   </script>
 </body>
 </html>
+
+
